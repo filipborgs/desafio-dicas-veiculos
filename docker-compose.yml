@@ -1,0 +1,45 @@
+version: "3"
+networks:
+  php_desafio_fb_network:
+  postgres_service_network:
+
+services:
+  nginx_desafio_fb:
+    image: nginx:stable-alpine
+    container_name: desafio-nginx-fb
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php_desafio_fb
+      - postgres_fb
+    networks:
+      - php_desafio_fb_network
+
+  php_desafio_fb:
+    build: .
+    container_name: desafio-php-fb
+    working_dir: /var/www/html
+    depends_on:
+      - postgres_fb
+    volumes:
+      - .:/var/www/html
+      - ./xdebug/docker-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    networks:
+      - php_desafio_fb_network
+      - postgres_service_network
+
+  postgres_fb:
+    image: postgres:13
+    container_name: service-postgres-fb
+    environment:
+      POSTGRES_PASSWORD: dicas
+      POSTGRES_USER: dicas
+      SERVICE_NAME: service-postgres-fb
+      POSTGRES_DB: dicas
+    networks:
+      - postgres_service_network
+    ports:
+      - "5432:5432"
