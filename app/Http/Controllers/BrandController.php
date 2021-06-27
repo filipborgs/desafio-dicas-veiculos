@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\BrandContract;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -12,19 +13,9 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(BrandContract $brandContract, Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $brandContract->search($request['search']);
     }
 
     /**
@@ -49,16 +40,6 @@ class BrandController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Brand $brand)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
