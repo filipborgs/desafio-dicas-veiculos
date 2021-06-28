@@ -3,7 +3,7 @@
     <v-container class="py-0 fill-height">
       <div class="d-flex align-center">
         <v-img
-          class="shrink mr-2 round"
+          class="shrink round"
           contain
           src="@/assets/logo.png"
           transition="scale-transition"
@@ -15,7 +15,6 @@
       <v-spacer></v-spacer>
 
       <register />
-
       <login />
     </v-container>
   </v-app-bar>
