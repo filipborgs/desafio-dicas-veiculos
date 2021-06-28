@@ -1,28 +1,32 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <top-bar />
+    <v-main class="grey lighten-3">
+      <v-container>
+        <v-row>
+          <v-col cols="2">
+            <side-menu />
+          </v-col>
+
+          <v-col>
+            <v-sheet min-height="70vh" rounded="lg">
+              <router-view />
+            </v-sheet>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SideMenu from "./components/SideMenu.vue";
+import TopBar from "./components/TopBar.vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { SideMenu, TopBar },
+  data: () => ({
+    links: ["Dashboard", "Messages", "Profile", "Updates"],
+  }),
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
