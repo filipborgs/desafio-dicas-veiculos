@@ -12,4 +12,14 @@ class Tip extends Model
     protected $fillable = [
         'title', 'tip', 'id_user', 'id_vehicle'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'id_user');
+    }
+
+    public function vehicle()
+    {
+        return $this->hasOne(Vehicle::class, 'id', 'id_vehicle');
+    }
 }

@@ -12,4 +12,9 @@ class Vehicle extends Model
     protected $fillable = [
         'name', 'description', 'type', 'model', 'version', 'id_brand'
     ];
+
+    public function brand()
+    {
+        return $this->hasOne(Brand::class, 'id', 'id_brand');
+    }
 }

@@ -4,5 +4,5 @@ namespace App\Contracts;
 
 interface TipContract
 {
-    public function search($search);
+    public function search($search, $type);
 }

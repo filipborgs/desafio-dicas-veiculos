@@ -40,4 +40,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function rules()
+    {
+        return [
+            'name' => 'required',
+            'password' => 'required',
+            'email' => 'required|email|unique:users'
+        ];
+    }
+
+    public function tip()
+    {
+        return $this->hasMany(Tip::class, 'id', 'id_user');
+    }
 }

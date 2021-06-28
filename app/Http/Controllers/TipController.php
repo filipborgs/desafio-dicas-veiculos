@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\TipContract;
 use App\Models\Tip;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,9 @@ class TipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TipContract $tipContract, Request $request)
     {
-        //
+        return $tipContract->search($request['search'], $request['type']);
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\TipController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/brands', [BrandController::class, 'index']);
+Route::get('/tips', [TipController::class, 'index']);
+Route::post('/users', [Controller::class, 'store']);

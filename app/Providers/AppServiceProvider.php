@@ -37,5 +37,10 @@ class AppServiceProvider extends ServiceProvider
             'App\Contracts\TipContract',
             'App\Repositories\TipRepository'
         );
+
+        $this->app->bind(
+            'App\Contracts\UserContract',
+            'App\Repositories\UserRepository'
+        );
     }
 }
