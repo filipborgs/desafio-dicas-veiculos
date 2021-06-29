@@ -45,8 +45,8 @@ services:
       - "5433:5432"
 
   node_fb:
-    image: node:14.17
-    # build: ./frontend
+    # image: node:14.17
+    build: ./frontend
     container_name: desafio-node-fb
     command: npm run serve
     volumes:

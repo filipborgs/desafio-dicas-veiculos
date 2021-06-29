@@ -19,7 +19,6 @@ class Vehicle extends Model
             'name' => 'required',
             'type' => 'required|in:CAR,MOTORCYCLE,TRUCK',
             'model' => 'required',
-            'version' => 'required',
             'id_brand' => 'required'
         ];
     }

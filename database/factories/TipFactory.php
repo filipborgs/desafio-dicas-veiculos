@@ -24,7 +24,7 @@ class TipFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->title(),
+            'title' => $this->faker->text(10),
             'tip' => $this->faker->text(),
             'id_user' => User::factory(),
             'id_vehicle' => Vehicle::factory()
