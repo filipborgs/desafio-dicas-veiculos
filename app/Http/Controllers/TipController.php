@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Contracts\TipContract;
 use App\Models\Tip;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
-class TipController extends Controller
+class TipController extends BaseController
 {
     /**
      * Display a listing of the resource.

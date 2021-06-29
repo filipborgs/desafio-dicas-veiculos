@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/brands', [BrandController::class, 'index']);
 Route::get('/tips', [TipController::class, 'index']);
 Route::post('/users', [Controller::class, 'store']);
+Route::post('/login', [Controller::class, 'login']);

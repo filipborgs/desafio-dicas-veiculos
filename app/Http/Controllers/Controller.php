@@ -13,6 +13,19 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function login()
+    {
+        $credentials = request(['email', 'password']);
+
+        if (!$token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return response()->json([
+            'token' => $token,
+        ]);
+    }
+
     public function store(Request $request, UserContract $userContract)
     {
         $user = $userContract->save($request['user']);
