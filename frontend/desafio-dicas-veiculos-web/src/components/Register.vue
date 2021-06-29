@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="400">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn x-small text v-bind="attrs" v-on="on"> Cadastre-se </v-btn>
+      <v-btn small text v-bind="attrs" v-on="on"> Cadastre-se </v-btn>
     </template>
     <v-card>
       <v-card-title class="text-h5"> Cadastro </v-card-title>

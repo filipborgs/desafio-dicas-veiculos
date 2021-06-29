@@ -1,12 +1,12 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="400">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn text v-bind="attrs" x-small v-on="on"> Login </v-btn>
+      <v-btn text v-bind="attrs" small v-on="on"> Login </v-btn>
     </template>
     <v-card>
       <v-card-title class="text-h5"> Login </v-card-title>
       <v-card-text>
-        <v-form>
+        <v-form ref="login_form">
           <v-row>
             <v-col cols="12">
               <v-text-field
@@ -28,7 +28,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn text @click="dialog = false"> Cancelar </v-btn>
-        <v-btn color="green darken-1" text @click="dialog = false">
+        <v-btn color="green darken-1" :loading="loading" text @click="login">
           Entrar
         </v-btn>
       </v-card-actions>
@@ -44,8 +44,32 @@ export default {
         email: "",
         password: "",
       },
+      loading: false,
       dialog: false,
     };
+  },
+  methods: {
+    async login() {
+      if (!this.$refs.login_form.validate()) {
+        return;
+      }
+
+      this.loading = true;
+
+      try {
+        const { data } = await this.$axios.post("/api/login", {
+          ...this.user,
+        });
+        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("user", "zxczxcx");
+
+        this.$store.commit("login", { token: data.token, user: "" });
+      } catch (e) {
+        alert("Usuário ou senha inválida");
+      } finally {
+        this.loading = false;
+      }
+    },
   },
 };
 </script>

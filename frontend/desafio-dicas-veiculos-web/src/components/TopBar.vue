@@ -14,8 +14,13 @@
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
 
-      <register />
-      <login />
+      <div v-if="token">
+        <v-btn small @click="logout" text>Sair</v-btn>
+      </div>
+      <div v-else>
+        <register />
+        <login />
+      </div>
     </v-container>
   </v-app-bar>
 </template>
@@ -32,6 +37,12 @@ export default {
       { name: "Login", route: "login" },
     ],
   }),
+  methods: {
+    logout() {
+      this.$store.commit("logout");
+      sessionStorage.clear();
+    },
+  },
 };
 </script>
 
