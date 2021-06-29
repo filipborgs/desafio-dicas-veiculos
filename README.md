@@ -21,7 +21,8 @@ This API required only docker and docker-compose
  - docker exec desafio-php-fb composer install
 
 // Laravel comands
- - docker exec desafio-php-fb php arisan key:generate
- - docker exec desafio-php-fb php artisan migrate && php artisan db:seed
+ - docker exec desafio-php-fb php artisan key:generate
+ - docker exec desafio-php-fb php artisan migrate
+ - docker exec desafio-php-fb php artisan db:seed
 
 The project will start in the port **8089**

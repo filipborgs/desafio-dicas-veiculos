@@ -45,12 +45,9 @@ services:
       - "5433:5432"
 
   node_fb:
-    # image: node:14.17
     build: ./frontend
     container_name: desafio-node-fb
     command: npm run serve
-    volumes:
-      - ./frontend/desafio-dicas-veiculos-web:/front
     working_dir: '/front'
     ports:
       - "8089:8080"
