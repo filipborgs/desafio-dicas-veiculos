@@ -11,7 +11,14 @@ class Brand extends Model
 
     protected $fillable = ['description'];
 
-    public function brand()
+    public function rules()
+    {
+        return [
+            'description' => 'required'
+        ];
+    }
+
+    public function vehicle()
     {
         return $this->hasMany(Vehicle::class, 'id', 'id_brand');
     }

@@ -13,6 +13,16 @@ class Tip extends Model
         'title', 'tip', 'id_user', 'id_vehicle'
     ];
 
+    public function rules()
+    {
+        return [
+            'title' => 'required',
+            'tip' => 'required',
+            'id_user' => 'required',
+            'id_vehicle' => 'required'
+        ];
+    }
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'id_user');

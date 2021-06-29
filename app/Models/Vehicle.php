@@ -13,6 +13,17 @@ class Vehicle extends Model
         'name', 'description', 'type', 'model', 'version', 'id_brand'
     ];
 
+    public function rules()
+    {
+        return [
+            'name' => 'required',
+            'type' => 'required|in:CAR,MOTORCYCLE,TRUCK',
+            'model' => 'required',
+            'version' => 'required',
+            'id_brand' => 'required'
+        ];
+    }
+
     public function brand()
     {
         return $this->hasOne(Brand::class, 'id', 'id_brand');

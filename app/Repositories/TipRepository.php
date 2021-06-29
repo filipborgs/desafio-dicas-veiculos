@@ -33,4 +33,12 @@ class TipRepository extends BaseRepository implements TipContract
 
         return $query->get();
     }
+
+    public function save($data)
+    {
+        $this->validator($data, $this->model->rules());
+        $tip = $this->model->fill($data);
+        $tip->save();
+        return $tip;
+    }
 }

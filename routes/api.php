@@ -20,3 +20,4 @@ Route::get('/brands', [BrandController::class, 'index']);
 Route::get('/tips', [TipController::class, 'index']);
 Route::post('/users', [Controller::class, 'store']);
 Route::post('/login', [Controller::class, 'login']);
+Route::post('/tip', [TipController::class, 'store'])->middleware('auth:api');

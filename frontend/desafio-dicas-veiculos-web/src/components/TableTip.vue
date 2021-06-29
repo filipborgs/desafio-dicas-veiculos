@@ -38,7 +38,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="tip in tips" :key="tip.id">
+          <tr
+            v-for="(tip, index) in tips"
+            @click="openModal(index)"
+            :key="tip.id"
+          >
             <td>{{ tip.title }}</td>
             <td>{{ tip.vehicle.type }}</td>
             <td>{{ tip.vehicle.name }}</td>
@@ -48,6 +52,25 @@
         </tbody>
       </template>
     </v-simple-table>
+
+    <v-dialog v-model="modal" width="500">
+      <v-card>
+        <v-card-title class="text-h5 grey lighten-2">
+          {{ tip.title }}
+        </v-card-title>
+
+        <v-card-text>
+          {{ tip.tip }}
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="modal = false"> Fechar </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -63,6 +86,7 @@ export default {
       tips: [],
       query: "",
       type: "",
+      tip: "",
       vehicleTypes: [
         {
           name: "Todos",
@@ -89,10 +113,25 @@ export default {
       const { data } = await this.$axios.get("/api/tips", {
         params: {
           search: this.query,
-          type: this.type
+          type: this.type,
         },
       });
       this.tips = data;
+    },
+
+    openModal(index) {
+      this.tip = this.tips[index];
+    },
+  },
+
+  computed: {
+    modal: {
+      get() {
+        return typeof this.tip == "object";
+      },
+      set(val) {
+        if (!val) this.tip = "";
+      },
     },
   },
 };

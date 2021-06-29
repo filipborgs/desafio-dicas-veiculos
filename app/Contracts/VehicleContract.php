@@ -4,5 +4,5 @@ namespace App\Contracts;
 
 interface VehicleContract
 {
-    public function search($search);
+    public function save($vehicle);
 }
